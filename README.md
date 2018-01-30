@@ -12,6 +12,7 @@ You can choose your own path among the following levels:
 + [Bonus](#bonus)
 
 ## How to apply
+> If you want to apply in a private way, please contact us
 + Fork this repository into your Github account
 + Solve the challenge on a branch called 'develop'
 + Create a pull request to the 'master' branch of your own repository
