@@ -1,0 +1,178 @@
+{
+  "return": [
+    {
+      "1000010000": {
+        "SSDs": [],
+        "biosreleasedate": "12/01/2006",
+        "biosversion": "VirtualBox",
+        "cpu_flags": [
+          "fpu",
+          "vme",
+          "de",
+          "pse",
+          "tsc",
+          "msr",
+          "pae",
+          "mce",
+          "cx8",
+          "apic",
+          "sep",
+          "mtrr",
+          "pge",
+          "mca",
+          "cmov",
+          "pat",
+          "pse36",
+          "clflush",
+          "mmx",
+          "fxsr",
+          "sse",
+          "sse2",
+          "ht",
+          "syscall",
+          "nx",
+          "rdtscp",
+          "lm",
+          "constant_tsc",
+          "rep_good",
+          "nopl",
+          "pni",
+          "ssse3",
+          "lahf_lm"
+        ],
+        "cpu_model": "Intel(R) Core(TM) i7-4930K CPU @ 3.40GHz",
+        "cpuarch": "x86_64",
+        "domain": "",
+        "fqdn": "suma-ref31-cli-sles12sp3-1",
+        "fqdn_ip4": [
+          "127.0.1.1"
+        ],
+        "fqdn_ip6": [],
+        "gpus": [
+          {
+            "model": "VirtualBox Graphics Adapter",
+            "vendor": "unknown"
+          }
+        ],
+        "host": "suma-ref31-cli-sles12sp3-1",
+        "hwaddr_interfaces": {
+          "eth0": "08:00:27:a8:99:a8",
+          "eth1": "08:00:27:9b:a0:23",
+          "lo": "00:00:00:00:00:00"
+        },
+        "id": "1000010000",
+        "ip4_interfaces": {
+          "eth0": [
+            "10.0.2.15"
+          ],
+          "eth1": [
+            "192.168.56.103"
+          ],
+          "lo": [
+            "127.0.0.1"
+          ]
+        },
+        "ip6_interfaces": {
+          "eth0": [
+            "fe80::a00:27ff:fea8:99a8"
+          ],
+          "eth1": [
+            "fe80::a00:27ff:fe9b:a023"
+          ],
+          "lo": [
+            "::1"
+          ]
+        },
+        "ip_interfaces": {
+          "eth0": [
+            "10.0.2.15"
+          ],
+          "eth1": [
+            "192.168.56.103"
+          ],
+          "lo": [
+            "127.0.0.1"
+          ]
+        },
+        "ipv4": [
+          "10.0.2.15",
+          "127.0.0.1",
+          "192.168.56.103"
+        ],
+        "ipv6": [
+          "::1",
+          "fe80::a00:27ff:fe9b:a023",
+          "fe80::a00:27ff:fea8:99a8"
+        ],
+        "kernel": "Linux",
+        "kernelrelease": "3.13.0-52-generic",
+        "locale_info": {
+          "defaultencoding": "UTF-8",
+          "defaultlanguage": "en_US"
+        },
+        "localhost": "suma-ref31-cli-sles12sp3-1",
+        "lsb_distrib_codename": "trusty",
+        "lsb_distrib_description": "Ubuntu 14.04.2 LTS",
+        "lsb_distrib_id": "Ubuntu",
+        "lsb_distrib_release": "14.04",
+        "machine_id": "d780f33f9aac08e2baa98f5154de11eb",
+        "manufacturer": "innotek GmbH",
+        "master": "192.168.56.102",
+        "mem_total": 2001,
+        "nodename": "suma-ref31-cli-sles12sp3-1",
+        "num_cpus": 4,
+        "num_gpus": 1,
+        "os": "Ubuntu",
+        "os_family": "Debian",
+        "osarch": "amd64",
+        "oscodename": "trusty",
+        "osfinger": "Ubuntu-14.04",
+        "osfullname": "Ubuntu",
+        "osrelease": "14.04",
+        "osrelease_info": [
+          14,
+          4
+        ],
+        "path": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "productname": "VirtualBox",
+        "ps": "ps -efHww",
+        "pythonexecutable": "/usr/bin/python",
+        "pythonpath": [
+          "/usr/bin",
+          "/usr/local/lib/python2.7/dist-packages/pytz-2013.9-py2.7.egg",
+          "/usr/local/lib/python2.7/dist-packages/python_dateutil-2.4.0-py2.7.egg",
+          "/usr/lib/python2.7",
+          "/usr/lib/python2.7/plat-x86_64-linux-gnu",
+          "/usr/lib/python2.7/lib-tk",
+          "/usr/lib/python2.7/lib-old",
+          "/usr/lib/python2.7/lib-dynload",
+          "/usr/local/lib/python2.7/dist-packages",
+          "/usr/lib/python2.7/dist-packages",
+          "/usr/lib/python2.7/dist-packages/PILcompat",
+          "/usr/lib/python2.7/dist-packages/gtk-2.0",
+          "/usr/lib/python2.7/dist-packages/ubuntu-sso-client"
+        ],
+        "pythonversion": [
+          2,
+          7,
+          6,
+          "final",
+          0
+        ],
+        "saltpath": "/usr/lib/python2.7/dist-packages/salt",
+        "saltversion": "2014.7.5",
+        "saltversioninfo": [
+          2014,
+          7,
+          5,
+          0
+        ],
+        "serialnumber": "0",
+        "server_id": 341203228,
+        "shell": "/bin/bash",
+        "virtual": "VirtualBox",
+        "zmqversion": "4.0.4"
+      }
+    }
+  ]
+}

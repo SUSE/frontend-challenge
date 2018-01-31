@@ -1,0 +1,15 @@
+{
+  "name": "suse",
+  "version": "0.0.1",
+  "description": "Frontend Challenge",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmontala/frontend-challenge.git"
+  },
+  "author": "victormontala@gmail.com",
+  "license": "ISC",
+  "homepage": "https://github.com/vmontala/frontend-challenge#readme",
+  "scripts": {
+    "postinstall": "npm --prefix ./server install ./server"
+  }
+}
