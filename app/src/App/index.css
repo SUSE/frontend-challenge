@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:300,400,700');
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+.list-group-item-title, .card-title {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.mw-50 {
+  max-width: 50%;
+}
