@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './index.css'
 
+import Machines from '../common/factories/Machines'
+
 import Header from '../Header'
 import MachineList from '../MachineList'
 import MachineDetail from '../MachineDetail'
