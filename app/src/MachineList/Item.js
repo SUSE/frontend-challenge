@@ -1,34 +1,73 @@
 import React, { Component } from 'react'
 
 class MachineListItem extends Component {
-  render() {
+  generateCreatedOrModified(machine) {
+    let key = 'Modified',
+        date = machine.modified
+
+    if(machine.created >= machine.modified) {
+      key = 'Created'
+      date = machine.created
+    }
+
     return (
-      <a href="#" className="list-group-item list-group-item-action flex-column align-items-start p-3">
-        <div className="mb-2">
+      <div className="col-auto pr-0">
+        <span className="text-muted">{ key }</span> <span title={ date }>twelve days ago</span>
+      </div>
+    )
+  }
+
+  generateNoAutoUpdate(auto_update) {
+    if(auto_update) {
+      return null
+    }
+
+    return (
+      <div className="col-auto">
+        <span className="text-warning">No auto update</span>
+      </div>
+    )
+  }
+
+  render() {
+    let {
+          machine
+        } = this.props
+
+    return (
+      <button
+        key={ machine.id }
+        type="button"
+        className="list-group-item list-group-item-action flex-column align-items-start p-3"
+      >
+        <div>
           <h5 className="list-group-item-title font-weight-normal mb-0">
-          suma-ref31-cli-sles12sp3-1
+          { machine.name }
           </h5>
         </div>
-        <div className="row justify-content-start mb-1 font-weight-light">
-          <div className="col-auto">
-            <span className="text-muted font-weight-light">OS</span> sles-release 12.3
-          </div>
-          <div className="col-auto">
-            <span className="text-muted font-weight-light">Kernel</span> 4.4.73-5-default
-          </div>
+      <div>
+      <div className="row justify-content-start mb-1 font-weight-light">
+        <div className="col-auto">
+          <span className="text-muted font-weight-light">OS</span> { machine.os }
         </div>
-        <div className="row justify-content-start small font-weight-light">
-          <div className="col-auto pr-0">
-            <span className="text-muted">Created</span> <span title="24/01/2018 14:30:57">twelve days ago</span>
-          </div>
-          <div className="col-auto pr-0">
-            <span className="text-muted">Running since</span> <span className="text-success" title="24/01/2018 14:30:57">twelve days ago</span>
-          </div>
-          <div className="col-auto">
-            <span className="text-warning">No auto update</span>
-          </div>
+        <div className="col-auto">
+          <span className="text-muted font-weight-light">Kernel</span> { machine.kernel }
         </div>
-      </a>
+      </div>
+      <div className="row justify-content-start small font-weight-light">
+        {
+          this.generateCreatedOrModified(machine)
+        }
+        <div className="col-auto pr-0">
+          <span className="text-muted">Running since</span>&nbsp;
+          <span className="text-success" title={ machine.boot }>twelve days ago</span>
+        </div>
+        {
+          this.generateNoAutoUpdate(machine.auto_update)
+        }
+      </div>
+    </div>
+      </button>
     )
   }
 }
