@@ -8,6 +8,12 @@ class MachineListItem {
       this.boot = new Date(data.last_boot)
       this.created = new Date(data.created)
       this.modified = new Date(data.modified)
+
+      this.searchText = this.getSearchText(data)
+  }
+
+  getSearchText(data) {
+    return [data.description, data.kernel, data.name].join(' ')
   }
 }
 

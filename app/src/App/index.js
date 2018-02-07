@@ -14,12 +14,14 @@ class App extends Component {
     this.state = {
       machines: [],
       currentPage: 1,
-      pageLimit: 5
+      pageLimit: 5,
+      filter: ''
     }
 
     this.fetchMachines()
 
     this.setPage = this.setPage.bind(this)
+    this.setFilter = this.setFilter.bind(this)
   }
 
   fetchMachines() {
@@ -31,30 +33,56 @@ class App extends Component {
     this.setState({ currentPage })
   }
 
+  setFilter(filter) {
+    let cleanFilter = filter.replace(/( |\\|\/|\+|\*|\.|\[|\])/g, '|').trim()
+
+    if(cleanFilter !== this.state.filter) {
+      this.setState({
+        filter: cleanFilter
+      })
+
+      this.setPage(1)
+    }
+  }
+
+  getFilteredListMachines(allMachines, filter) {
+    let machines = allMachines
+
+    if(filter) {
+      let regexpFilter = new RegExp(`(${ filter.replace(/ /g, '|') })`, 'gi')
+
+      machines = machines.filter((machine) => machine.searchText.search(regexpFilter) >= 0)
+    }
+
+    return machines
+  }
+
   calcTotalPages(total, pageLimit) {
     return Math.ceil(total / pageLimit) || 1
   }
 
-  getPageMachines(machines, currentPage, pageLimit) {
-    return machines.slice((currentPage - 1) * pageLimit, currentPage * pageLimit)
+  getPageMachines(filteredMachines, currentPage, pageLimit) {
+    return filteredMachines.slice((currentPage - 1) * pageLimit, currentPage * pageLimit)
   }
 
   render() {
     let {
-          machines,
+          machines: allMachines,
+          filter,
           currentPage,
           pageLimit
         } = this.state,
-        pageMachines = this.getPageMachines(machines, currentPage, pageLimit),
+        filteredMachines = this.getFilteredListMachines(allMachines, filter),
         pagination = {
           currentPage: currentPage,
-          lastPage: this.calcTotalPages(machines.length, pageLimit),
+          lastPage: this.calcTotalPages(filteredMachines.length, pageLimit),
           setPage: this.setPage
-        }
+        },
+        pageMachines = this.getPageMachines(filteredMachines, currentPage, pageLimit)
 
     return (
       <div className="container d-flex flex-column p-3">
-        <Header></Header>
+        <Header setFilter={ this.setFilter }></Header>
         <section className="row">
           <div className="col-auto">
             <MachineList
