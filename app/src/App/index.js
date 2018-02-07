@@ -18,11 +18,21 @@ class App extends Component {
     }
 
     this.fetchMachines()
+
+    this.setPage = this.setPage.bind(this)
   }
 
   fetchMachines() {
     Machines.getAll()
       .then((machines) => this.setState({ machines }))
+  }
+
+  setPage(currentPage) {
+    this.setState({ currentPage })
+  }
+
+  calcTotalPages(total, pageLimit) {
+    return Math.ceil(total / pageLimit) || 1
   }
 
   getPageMachines(machines, currentPage, pageLimit) {
@@ -35,14 +45,26 @@ class App extends Component {
           currentPage,
           pageLimit
         } = this.state,
-        pageMachines = this.getPageMachines(machines, currentPage, pageLimit)
+        pageMachines = this.getPageMachines(machines, currentPage, pageLimit),
+        pagination = {
+          currentPage: currentPage,
+          lastPage: this.calcTotalPages(machines.length, pageLimit),
+          setPage: this.setPage
+        }
 
     return (
       <div className="container d-flex flex-column p-3">
         <Header></Header>
         <section className="row">
-          <MachineList machines={ pageMachines }></MachineList>
-          <MachineDetail></MachineDetail>
+          <div className="col-auto mw-50">
+            <MachineList
+              pagination={ pagination }
+              machines={ pageMachines }
+            ></MachineList>
+          </div>
+          <div>
+            <MachineDetail></MachineDetail>
+          </div>
         </section>
       </div>
     )

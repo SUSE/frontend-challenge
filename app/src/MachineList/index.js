@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 
 import Item from './Item'
+import Pagination from '../Pagination'
 
 class MachineList extends Component {
   render() {
     let {
-          machines,
-        } = this.props
+          machines
+        } = this.props,
+        {
+          currentPage,
+          lastPage,
+          setPage
+        } = this.props.pagination
 
     return (
-      <nav className="col-auto mw-50">
-        <div className="list-group list-group-flush">
+      <div id="machine-list">
+        <nav className="list-group list-group-flush">
           {
             machines.map((machine) => (
               <Item
@@ -19,8 +25,13 @@ class MachineList extends Component {
               ></Item>
             ))
           }
-        </div>
-      </nav>
+        </nav>
+        <Pagination
+          currentPage={ currentPage }
+          lastPage={ lastPage }
+          setPage={ setPage }
+        ></Pagination>
+      </div>
     )
   }
 }
