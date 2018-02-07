@@ -9,6 +9,21 @@ html, body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-.mw-50 {
-  max-width: 50%;
+#machine-list .list-group-item:focus {
+  outline: 0;
+}
+#machine-list .list-group-item.active {
+  background-color: #f5f5f5;
+  color: #495057;
+  border-color: rgba(0,0,0,.25);
+}
+
+#pagination .btn-link:hover,
+#pagination .btn-link:focus {
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+#pagination .btn-link:disabled:hover,
+#pagination .btn-link:disabled:focus {
+  background-color: transparent;
 }

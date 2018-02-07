@@ -56,7 +56,7 @@ class App extends Component {
       <div className="container d-flex flex-column p-3">
         <Header></Header>
         <section className="row">
-          <div className="col-auto mw-50">
+          <div className="col-auto">
             <MachineList
               pagination={ pagination }
               machines={ pageMachines }
