@@ -6,7 +6,8 @@ import Pagination from '../Pagination'
 class MachineList extends Component {
   render() {
     let {
-          machines
+          machines,
+          toggleMachine
         } = this.props,
         {
           currentPage,
@@ -22,6 +23,7 @@ class MachineList extends Component {
               <Item
                 key={ machine.id }
                 machine={ machine }
+                toggleMachine={ toggleMachine }
               ></Item>
             ))
           }

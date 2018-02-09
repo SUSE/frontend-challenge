@@ -13,6 +13,7 @@ class App extends Component {
 
     this.state = {
       machines: [],
+      machine: null,
       currentPage: 1,
       pageLimit: 5,
       filter: ''
@@ -22,6 +23,7 @@ class App extends Component {
 
     this.setPage = this.setPage.bind(this)
     this.setFilter = this.setFilter.bind(this)
+    this.toggleMachine = this.toggleMachine.bind(this)
   }
 
   fetchMachines() {
@@ -42,6 +44,27 @@ class App extends Component {
       })
 
       this.setPage(1)
+    }
+  }
+
+  fetchMachine(id) {
+    Machines.getById(id)
+      .then((machine => this.setState({ machine })))
+  }
+
+  toggleMachine(machine) {
+    if(!machine.active) {
+      this.state.machines.forEach((machine) => {
+        machine.active = false
+      })
+
+      machine.toggle()
+
+      this.fetchMachine(machine.id)
+    } else {
+      machine.toggle()
+
+      this.setState({ machine: null })
     }
   }
 
@@ -70,7 +93,8 @@ class App extends Component {
           machines: allMachines,
           filter,
           currentPage,
-          pageLimit
+          pageLimit,
+          machine
         } = this.state,
         filteredMachines = this.getFilteredListMachines(allMachines, filter),
         pagination = {
@@ -86,12 +110,13 @@ class App extends Component {
         <section className="row">
           <div className="col-auto">
             <MachineList
-              pagination={ pagination }
               machines={ pageMachines }
+              pagination={ pagination }
+              toggleMachine={ this.toggleMachine }
             ></MachineList>
           </div>
           <div>
-            <MachineDetail></MachineDetail>
+            <MachineDetail machine={ machine }></MachineDetail>
           </div>
         </section>
       </div>

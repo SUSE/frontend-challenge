@@ -29,16 +29,28 @@ class MachineListItem extends Component {
     )
   }
 
+  getItemClassName(active) {
+    let className = 'list-group-item list-group-item-action flex-column align-items-start p-3'
+
+    if(active) {
+      className += ' active'
+    }
+
+    return className
+  }
+
   render() {
     let {
-          machine
+          machine,
+          toggleMachine
         } = this.props
 
     return (
       <button
         key={ machine.id }
+        onClick={ () => toggleMachine(machine) }
+        className={ this.getItemClassName(machine.active) }
         type="button"
-        className="list-group-item list-group-item-action flex-column align-items-start p-3"
       >
         <div>
           <h5 className="list-group-item-title font-weight-normal mb-0">

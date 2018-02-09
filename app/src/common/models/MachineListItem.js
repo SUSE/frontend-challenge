@@ -10,10 +10,16 @@ class MachineListItem {
       this.modified = new Date(data.modified)
 
       this.searchText = this.getSearchText(data)
+
+      this.active = false
   }
 
   getSearchText(data) {
     return [data.description, data.kernel, data.name].join(' ')
+  }
+
+  toggle() {
+    this.active = !this.active
   }
 }
 
