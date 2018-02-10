@@ -5,7 +5,9 @@ import Machines from '../common/factories/Machines'
 
 import Header from '../Header'
 import MachineList from '../MachineList'
+import EmptyList from '../EmptyList'
 import MachineDetail from '../MachineDetail'
+import EmptyDetail from '../EmptyDetail'
 
 class App extends Component {
   constructor() {
@@ -97,6 +99,7 @@ class App extends Component {
           machine
         } = this.state,
         filteredMachines = this.getFilteredListMachines(allMachines, filter),
+        isListFiltered = !!filter,
         pagination = {
           currentPage: currentPage,
           lastPage: this.calcTotalPages(filteredMachines.length, pageLimit),
@@ -107,18 +110,30 @@ class App extends Component {
     return (
       <div className="container d-flex flex-column p-3">
         <Header setFilter={ this.setFilter }></Header>
-        <section className="row">
-          <div className="col-auto">
-            <MachineList
-              machines={ pageMachines }
-              pagination={ pagination }
-              toggleMachine={ this.toggleMachine }
-            ></MachineList>
-          </div>
-          <div>
-            <MachineDetail machine={ machine }></MachineDetail>
-          </div>
-        </section>
+        {
+          filteredMachines.length ?
+          (
+            <section className="row">
+              <div className="col-auto">
+                <MachineList
+                  machines={ pageMachines }
+                  pagination={ pagination }
+                  toggleMachine={ this.toggleMachine }
+                ></MachineList>
+              </div>
+              <div className="col d-none d-sm-block flex-column border-left p-3">
+                {
+                  machine ?
+                  (<MachineDetail machine={ machine }></MachineDetail>) :
+                  (<EmptyDetail></EmptyDetail>)
+                }
+              </div>
+            </section>
+          ) :
+          (
+            <EmptyList isFiltered={ isListFiltered }></EmptyList>
+          )
+        }
       </div>
     )
   }
