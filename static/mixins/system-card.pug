@@ -1,0 +1,16 @@
+mixin system-card(title, content)
+  .card
+    .card-content
+      .media
+        .media-left
+          figure.image.is-16x16
+            i(class="fab fa-linux")
+        .media-content
+          h3
+            a(href="/item")= title
+      .content
+        p= content
+    footer.card-footer
+      each item in ['View', 'Stop', 'Destroy']
+        a.card-footer-item.is-size-7(href="/item")= item
+      
