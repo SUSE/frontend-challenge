@@ -18,6 +18,7 @@ class App extends Component {
       machine: null,
       currentPage: 1,
       pageLimit: 5,
+      isExtendedList: true,
       filter: ''
     }
 
@@ -26,6 +27,7 @@ class App extends Component {
     this.setPage = this.setPage.bind(this)
     this.setFilter = this.setFilter.bind(this)
     this.toggleMachine = this.toggleMachine.bind(this)
+    this.toggleListLayout = this.toggleListLayout.bind(this)
   }
 
   fetchMachines() {
@@ -70,6 +72,21 @@ class App extends Component {
     }
   }
 
+  toggleListLayout() {
+    let isExtended = !this.state.isExtendedList,
+        currentPage = this.state.currentPage,
+        limit = {
+          extended: 5,
+          compacted: 10
+        }
+
+    this.setState({
+      isExtendedList: isExtended,
+      pageLimit: isExtended ? limit.extended : limit.compacted,
+      currentPage: isExtended ? currentPage * 2 - 1 : Math.ceil(currentPage / 2)
+    })
+  }
+
   getFilteredListMachines(allMachines, filter) {
     let machines = allMachines
 
@@ -96,7 +113,8 @@ class App extends Component {
           filter,
           currentPage,
           pageLimit,
-          machine
+          machine,
+          isExtendedList
         } = this.state,
         filteredMachines = this.getFilteredListMachines(allMachines, filter),
         isListFiltered = !!filter,
@@ -109,7 +127,12 @@ class App extends Component {
 
     return (
       <div className="container d-flex flex-column p-3">
-        <Header setFilter={ this.setFilter }></Header>
+        <Header
+          setFilter={ this.setFilter }
+          toggleListLayout={ this.toggleListLayout }
+          isExtendedList={ isExtendedList }
+        >
+        </Header>
         {
           filteredMachines.length ?
           (
@@ -119,6 +142,7 @@ class App extends Component {
                   machines={ pageMachines }
                   pagination={ pagination }
                   toggleMachine={ this.toggleMachine }
+                  isExtended={ isExtendedList }
                 ></MachineList>
               </div>
               <div className="col d-none d-sm-block flex-column border-left p-3">

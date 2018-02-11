@@ -7,7 +7,8 @@ class MachineList extends Component {
   render() {
     let {
           machines,
-          toggleMachine
+          toggleMachine,
+          isExtended
         } = this.props,
         {
           currentPage,
@@ -23,6 +24,7 @@ class MachineList extends Component {
               <Item
                 key={ machine.id }
                 machine={ machine }
+                isExtended={ isExtended }
                 toggleMachine={ toggleMachine }
               ></Item>
             ))

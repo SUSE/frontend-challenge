@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 class Header extends Component {
   render() {
     let {
-          setFilter
+          setFilter,
+          toggleListLayout,
+          isExtendedList
         } = this.props
 
     return (
@@ -12,7 +14,7 @@ class Header extends Component {
           Machine index
         </h2>
         <form>
-          <div className="form-row">
+          <div className="form-row h-100">
             <div className="form-group col-md-4 m-0">
               <input
                 type="filter"
@@ -22,6 +24,20 @@ class Header extends Component {
                 placeholder="Filter results"
                 onChange={ (e) => setFilter(e.target.value) }
               />
+            </div>
+            <div className="form-group col-md-4 my-auto">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="format"
+                  checked={ isExtendedList }
+                  onChange={ toggleListLayout }
+                />
+                <label className="form-check-label" htmlFor="format">
+                  Show extended list
+                </label>
+              </div>
             </div>
           </div>
         </form>

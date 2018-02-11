@@ -29,6 +29,33 @@ class MachineListItem extends Component {
     )
   }
 
+  generateExtendedContent(machine) {
+    return (
+      <div>
+        <div className="row justify-content-start mb-1 font-weight-light">
+          <div className="col-auto">
+            <span className="text-muted font-weight-light">OS</span> { machine.os }
+          </div>
+          <div className="col-auto">
+            <span className="text-muted font-weight-light">Kernel</span> { machine.kernel }
+          </div>
+        </div>
+        <div className="row justify-content-start small font-weight-light">
+          {
+            this.generateCreatedOrModified(machine)
+          }
+          <div className="col-auto pr-0">
+            <span className="text-muted">Running since</span>&nbsp;
+            <span className="text-success" title={ machine.boot }>twelve days ago</span>
+          </div>
+          {
+            this.generateNoAutoUpdate(machine.auto_update)
+          }
+        </div>
+      </div>
+    )
+  }
+
   getItemClassName(active) {
     let className = 'list-group-item list-group-item-action flex-column align-items-start p-3'
 
@@ -42,7 +69,8 @@ class MachineListItem extends Component {
   render() {
     let {
           machine,
-          toggleMachine
+          toggleMachine,
+          isExtended
         } = this.props
 
     return (
@@ -57,28 +85,7 @@ class MachineListItem extends Component {
           { machine.name }
           </h5>
         </div>
-      <div>
-      <div className="row justify-content-start mb-1 font-weight-light">
-        <div className="col-auto">
-          <span className="text-muted font-weight-light">OS</span> { machine.os }
-        </div>
-        <div className="col-auto">
-          <span className="text-muted font-weight-light">Kernel</span> { machine.kernel }
-        </div>
-      </div>
-      <div className="row justify-content-start small font-weight-light">
-        {
-          this.generateCreatedOrModified(machine)
-        }
-        <div className="col-auto pr-0">
-          <span className="text-muted">Running since</span>&nbsp;
-          <span className="text-success" title={ machine.boot }>twelve days ago</span>
-        </div>
-        {
-          this.generateNoAutoUpdate(machine.auto_update)
-        }
-      </div>
-    </div>
+        { isExtended ? this.generateExtendedContent(machine) : null }
       </button>
     )
   }
