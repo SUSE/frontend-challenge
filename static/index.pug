@@ -1,0 +1,20 @@
+extends layouts/default
+
+include mixins/system-card
+
+block content
+  include includes/header
+
+  section.section
+    .container(style="margin-bottom: 20px")
+      .tabs.is-centered
+        ul
+          each item in [['All', 'is-active'], ['Running'], ['Sleeping']]
+            li(class=item[1])
+              a= item[0]
+
+    .container
+      .columns.is-multiline
+        each i in [1,1,1,1,1,1]
+          .column.is-one-third-desktop.is-half-tablet
+            +system-card('a1b2c3-12345', 'Content goes here')
