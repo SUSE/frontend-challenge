@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+/**
+ * Empty list component, it renders a message telling the user that there are no machines
+ * The message changes if there is a filter applied
+ */
 class MachineList extends Component {
   render() {
     let isFiltered = this.props.isFiltered

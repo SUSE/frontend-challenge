@@ -1,3 +1,6 @@
+/**
+ * Helper that given the server machine detail it modelates it to suit the app needs
+ */
 class MachineDetail {
   constructor(data) {
     this.id = data.id
@@ -92,6 +95,13 @@ class MachineDetail {
     }
   }
 
+  /**
+   * Gets a list with the network interfaces and all their data (ip4, ip6 and mac)
+   *
+   * @param data {object} - Server-provided machine detail data
+   *
+   * @returns {array} - List of network interface objects
+   */
   getNetworkInterfaces(data) {
     let reference = [
           {
@@ -135,6 +145,12 @@ class MachineDetail {
     return interfaceList
   }
 
+  /**
+   * Gets the content of this model with a specific structure to be iterated in the detail
+   * component
+   *
+   * @returns {array} - List of sections that the detail will contain with the data of this model
+   */
   getViewSections() {
     return [
       {

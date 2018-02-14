@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
 
+/**
+ * Machine list item component, it renders the item, with an expanded or collapsed layout
+ * It also triggers a function when being clicked to fetch the details and mark the item as active
+ * in the list
+ */
 class MachineListItem extends Component {
+  /**
+   * Generates a React DOM element depending on which is the most recent date (created or modified)
+   *
+   * @param {MachineListItem} machine - Machine object from which date has to be checked
+   *
+   * @returns {ReactElement} - Element with the creation or last modification date
+   */
   generateCreatedOrModified(machine) {
     let key = 'Modified',
         date = machine.modified
@@ -17,6 +29,13 @@ class MachineListItem extends Component {
     )
   }
 
+  /**
+   * Generates a React DOM element if the machine has the auto update enabled
+   *
+   * @param {MachineListItem} machine - Machine object from which the auto update has to be checked
+   *
+   * @returns {ReactElement|null} - Element warning that auto update is disabled or null
+   */
   generateNoAutoUpdate(auto_update) {
     if(auto_update) {
       return null
@@ -29,6 +48,14 @@ class MachineListItem extends Component {
     )
   }
 
+  /**
+   * Generates a React DOM element with the extended content (os, kernel, created/modified, last
+   * boot and auto update)
+   *
+   * @param {MachineListItem} machine - Machine object from which the auto update has to be checked
+   *
+   * @returns {ReactElement} - Element with all the extended content
+   */
   generateExtendedContent(machine) {
     return (
       <div>
@@ -56,6 +83,14 @@ class MachineListItem extends Component {
     )
   }
 
+  /**
+   * Gets the classes required for the item which depends on the active status of the machine
+   * on the list
+   *
+   * @param {boolean} active - Active status (on the list)
+   *
+   * @returns {string} - String with all the class names separated by spaces
+   */
   getItemClassName(active) {
     let className = 'list-group-item list-group-item-action flex-column align-items-start p-3'
 
@@ -80,7 +115,7 @@ class MachineListItem extends Component {
         className={ this.getItemClassName(machine.active) }
         type="button"
       >
-        <div>
+        <div className={ isExtended ? 'mb-2' : ''}>
           <h5 className="list-group-item-title font-weight-normal mb-0">
           { machine.name }
           </h5>

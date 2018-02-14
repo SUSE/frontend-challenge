@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+/**
+ * Machine detail section list component, it renders the values within a list inside a section of
+ * the item of a given machine detail
+ */
 class MachineDetailSectionList extends Component {
   render() {
     let {

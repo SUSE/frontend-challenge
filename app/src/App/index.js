@@ -9,6 +9,9 @@ import EmptyList from '../EmptyList'
 import MachineDetail from '../MachineDetail'
 import EmptyDetail from '../EmptyDetail'
 
+/**
+ * Application container, it fetches the machines and renders the header, list and detail
+ */
 class App extends Component {
   constructor() {
     super()
@@ -30,15 +33,31 @@ class App extends Component {
     this.toggleListLayout = this.toggleListLayout.bind(this)
   }
 
+  /**
+   * Fetches the machine list from the server and stores the list of machines in the state
+   */
   fetchMachines() {
     Machines.getAll()
       .then((machines) => this.setState({ machines }))
   }
 
+  /**
+   * Stores the given page on the state
+   *
+   * @param {number} currentPage - Page number
+   */
   setPage(currentPage) {
     this.setState({ currentPage })
   }
 
+  /**
+   * Cleans the given filter replacing some characters for spaces and also removing all the blank
+   * spaces from its starting or ending
+   * If the filter to apply is not the one applied it stores the clean filter on the state and
+   * changes the current page to the first one
+   *
+   * @param {number} currentPage - Page number
+   */
   setFilter(filter) {
     let cleanFilter = filter.replace(/( |\\|\/|\+|\*|\.|\[|\])/g, '|').trim()
 
@@ -51,11 +70,24 @@ class App extends Component {
     }
   }
 
+  /**
+   * Given an id, it fetches a machine detail from the server and stores it in the state
+   *
+   * @param {number} id - ID from the machine to fetch
+   */
   fetchMachine(id) {
     Machines.getById(id)
       .then((machine => this.setState({ machine })))
   }
 
+  /**
+   * Given a machine, if it status is active it sets it to inactive and removes the state stored
+   * machine to empty the detail
+   * If the status is inactive, it sets all machines to inactive, then actives this one and fetches
+   * its detail
+   *
+   * @param {MachineListItem} - Machine to be toggled
+   */
   toggleMachine(machine) {
     if(!machine.active) {
       this.state.machines.forEach((machine) => {
@@ -72,6 +104,11 @@ class App extends Component {
     }
   }
 
+  /**
+   * Toggles the list layout, extended or compacted
+   * Also sets the page limit for the list depending on the layout and changes the page
+   * accordingly
+   */
   toggleListLayout() {
     let isExtended = !this.state.isExtendedList,
         currentPage = this.state.currentPage,
@@ -87,6 +124,14 @@ class App extends Component {
     })
   }
 
+  /**
+   * Filters the given machines with the specified filter (if any)
+   *
+   * @param {array} allMachines - List of MachineListItems to filter
+   * @param {string} filter - Filter criteria
+   *
+   * @returns {array} - Filtered list of MachineListItems
+   */
   getFilteredListMachines(allMachines, filter) {
     let machines = allMachines
 
@@ -99,10 +144,27 @@ class App extends Component {
     return machines
   }
 
+  /**
+   * Calculates the last page given the amount of items and the page limit
+   *
+   * @param {number} total - Total of items to paginate
+   * @param {number} pageLimit - Limit of items per page
+   *
+   * @returns {number} - Total number of pages
+   */
   calcTotalPages(total, pageLimit) {
     return Math.ceil(total / pageLimit) || 1
   }
 
+  /**
+   * Gets the machines corresponding to the current page and limit from the filtered machines list
+   *
+   * @param {array} filteredMachines - Filtered list of MachineListItems
+   + @param {number} currentPage - Page number
+   + @param {numisEer} pageLimit - Page limit
+   *
+   * @param {array} - Sliced list of MachineListItems
+   */
   getPageMachines(filteredMachines, currentPage, pageLimit) {
     return filteredMachines.slice((currentPage - 1) * pageLimit, currentPage * pageLimit)
   }
@@ -141,8 +203,8 @@ class App extends Component {
                 <MachineList
                   machines={ pageMachines }
                   pagination={ pagination }
-                  toggleMachine={ this.toggleMachine }
                   isExtended={ isExtendedList }
+                  toggleMachine={ this.toggleMachine }
                 ></MachineList>
               </div>
               <div className="col d-none d-sm-block flex-column border-left p-3">

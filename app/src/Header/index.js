@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * Header component, it renders the page title, the filter input and the list style checkbox
+ */
 class Header extends Component {
   render() {
     let {
@@ -8,6 +11,7 @@ class Header extends Component {
           isExtendedList
         } = this.props
 
+     // mb only on md
     return (
       <header className="border-bottom p-3 mb-3">
         <h2 className="mb-3">

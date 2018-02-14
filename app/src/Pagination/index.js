@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+/**
+ * Machine list pagination component, it renders the pagination, handles the button status and
+ * contains the navigation logic
+ */
 class Pagination extends Component {
   constructor() {
     super()
@@ -10,20 +14,45 @@ class Pagination extends Component {
     this.setLastPage = this.setLastPage.bind(this)
   }
 
+  /**
+   * Checks if the given page is the first one
+   *
+   * @param {number} page - Current page number
+   *
+   * @returns boolean - True if it is, false if not
+   */
   isFirstPage(page) {
     return page === 1
   }
 
+  /**
+   * Checks if the given page is the last one
+   *
+   * @param {number} page - Current page number
+   * @param {number} last - Last page number
+   *
+   * @returns boolean - True if it is, false if not
+   */
   isLastPage(page, last) {
     return page === last
   }
 
+  /**
+   * Changes the current page to the first one except if we already are in the first page
+   *
+   * @returns undefined
+   */
   setFirstPage() {
     if(this.props.currentPage > 1) {
       this.props.setPage(1)
     }
   }
 
+  /**
+   * Changes the current page to the previous one except if we are in the first page
+   *
+   * @returns undefined
+   */
   setPreviousPage() {
     let current = this.props.currentPage
 
@@ -32,6 +61,11 @@ class Pagination extends Component {
     }
   }
 
+  /**
+   * Changes the current page to the next one except if we are in the last page
+   *
+   * @returns undefined
+   */
   setNextPage() {
     let current = this.props.currentPage
 
@@ -40,6 +74,11 @@ class Pagination extends Component {
     }
   }
 
+  /**
+   * Changes the current page to the last one except if we already are in the last page
+   *
+   * @returns undefined
+   */
   setLastPage() {
     let last = this.props.lastPage
 

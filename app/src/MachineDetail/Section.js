@@ -3,13 +3,30 @@ import React, { Component } from 'react'
 import Item from './Item'
 import List from './List'
 
+/**
+ * Machine detail section component, it renders a section of the given machine detail
+ */
 class MachineDetailSection extends Component {
+  /**
+   * Generates the items from the section
+   *
+   * @param {object} item - Section items
+   *
+   * @returns {ReactElement} - ReactElement for each of the section items
+   */
   generateItems(items) {
     return items.map((item, index) => {
       return (<Item key={ index } data={ item }></Item>)
     })
   }
 
+  /**
+   * Generates the lists from the section (if any)
+   *
+   * @param {object|undefined} item - Section list
+   *
+   * @returns {ReactElement|null} - ReactElement for each of the section lists or null if no lists
+   */
   generateLists(list) {
     if(!list || !list.length) {
       return null

@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import Item from './Item'
 import Pagination from '../Pagination'
 
+/**
+ * Machine list component, it renders the list items for each of the given machines and also the
+ * pagination
+ */
 class MachineList extends Component {
   render() {
     let {

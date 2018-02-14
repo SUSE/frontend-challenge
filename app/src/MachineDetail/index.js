@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 
 import Section from './Section'
 
+/**
+ * Machine detail component, it renders the item detail for the given machine
+ */
 class MachineDetail extends Component {
   render() {
     let machine = this.props.machine,

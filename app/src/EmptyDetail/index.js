@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+/**
+ * Empty detail component, it renders a message telling the user that there is no selected machine
+ */
 class EmptyDetail extends Component {
   render() {
     return (
