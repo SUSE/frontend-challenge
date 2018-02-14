@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './index.css'
 
 import Machines from '../common/factories/Machines'
 
