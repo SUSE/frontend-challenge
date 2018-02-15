@@ -11,9 +11,8 @@ class Header extends Component {
           isExtendedList
         } = this.props
 
-     // mb only on md
     return (
-      <header className="border-bottom p-3 mb-3">
+      <header id="header" className="border-bottom p-3">
         <h2 className="mb-3">
           Machine index
         </h2>

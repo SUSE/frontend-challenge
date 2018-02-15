@@ -9,7 +9,7 @@ import MachineDetail from '../models/MachineDetail';
  */
 class MachinesFactory {
   constructor() {
-    this.url = 'http://localhost:3001/machines'
+    this.url = 'http://192.168.1.107:3001/machines'
     this.machines = []
     this.machine = null
   }

@@ -28,6 +28,8 @@ class App extends Component {
 
     this.setPage = this.setPage.bind(this)
     this.setFilter = this.setFilter.bind(this)
+    this.setMachine = this.setMachine.bind(this)
+    this.deactivateMachines = this.deactivateMachines.bind(this)
     this.toggleMachine = this.toggleMachine.bind(this)
     this.toggleListLayout = this.toggleListLayout.bind(this)
   }
@@ -70,13 +72,31 @@ class App extends Component {
   }
 
   /**
+   * Sets the status of all machines to inactive and also removes the machine stored on the state
+   * of this component
+   */
+  setMachine(machine) {
+    this.setState({ machine })
+  }
+
+  /**
    * Given an id, it fetches a machine detail from the server and stores it in the state
    *
    * @param {number} id - ID from the machine to fetch
    */
   fetchMachine(id) {
     Machines.getById(id)
-      .then((machine => this.setState({ machine })))
+      .then((machine => this.setMachine(machine)))
+  }
+
+  /**
+   * Sets the status of all machines to inactive and also removes the machine stored on the state
+   * of this component
+   */
+  deactivateMachines() {
+    this.state.machines.forEach((machine) => {
+      machine.active = false
+    })
   }
 
   /**
@@ -89,9 +109,7 @@ class App extends Component {
    */
   toggleMachine(machine) {
     if(!machine.active) {
-      this.state.machines.forEach((machine) => {
-        machine.active = false
-      })
+      this.deactivateMachines()
 
       machine.toggle()
 
@@ -99,7 +117,7 @@ class App extends Component {
     } else {
       machine.toggle()
 
-      this.setState({ machine: null })
+      this.setMachine(null)
     }
   }
 
@@ -198,7 +216,7 @@ class App extends Component {
           filteredMachines.length ?
           (
             <section className="row">
-              <div className="col-auto">
+              <div className="col-lg-auto col-12">
                 <MachineList
                   machines={ pageMachines }
                   pagination={ pagination }
@@ -206,10 +224,16 @@ class App extends Component {
                   toggleMachine={ this.toggleMachine }
                 ></MachineList>
               </div>
-              <div className="col d-none d-sm-block flex-column border-left p-3">
+              <div className={ `col flex-column border-left${ !machine ? ' d-none d-lg-block p-3' : '' }` }>
                 {
                   machine ?
-                  (<MachineDetail machine={ machine }></MachineDetail>) :
+                  (
+                    <MachineDetail
+                      machine={ machine }
+                      setMachine={ this.setMachine }
+                      deactivateMachines={ this.deactivateMachines }
+                    ></MachineDetail>
+                  ) :
                   (<EmptyDetail></EmptyDetail>)
                 }
               </div>

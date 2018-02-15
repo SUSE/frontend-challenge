@@ -97,26 +97,26 @@ class Pagination extends Component {
       <div id="pagination" className="px-3 py-2">
         <div className="row no-gutters">
           <div className="col">
-            <button type="button" className="btn btn-link rounded-0 text-secondary" onClick={ this.setFirstPage } disabled={ this.isFirstPage(current) } aria-disabled={ this.isFirstPage(current) }>
-              ≪ First
+            <button type="button" className="btn btn-link btn-block rounded-0 text-secondary" onClick={ this.setFirstPage } disabled={ this.isFirstPage(current) } aria-disabled={ this.isFirstPage(current) }>
+              ≪ <span className="d-none d-sm-inline">First</span>
             </button>
           </div>
           <div className="col">
-            <button type="button" className="btn btn-link rounded-0 text-secondary" onClick={ this.setPreviousPage } disabled={ this.isFirstPage(current) } aria-disabled={ this.isFirstPage(current) }>
-              { `<` } Previous
+            <button type="button" className="btn btn-link btn-block rounded-0 text-secondary" onClick={ this.setPreviousPage } disabled={ this.isFirstPage(current) } aria-disabled={ this.isFirstPage(current) }>
+              { `<` } <span className="d-none d-sm-inline">Previous</span>
             </button>
           </div>
           <div className="col text-center text-secondary p-2">
             { current } / { last }
           </div>
           <div className="col">
-            <button type="button" className="btn btn-link rounded-0 text-secondary" onClick={ this.setNextPage } disabled={ this.isLastPage(current, last) } aria-disabled={ this.isLastPage(current, last) }>
-              Next {` > `}
+            <button type="button" className="btn btn-link btn-block rounded-0 text-secondary" onClick={ this.setNextPage } disabled={ this.isLastPage(current, last) } aria-disabled={ this.isLastPage(current, last) }>
+              <span className="d-none d-sm-inline">Next</span> {`>`}
             </button>
           </div>
           <div className="col">
-            <button type="button" className="btn btn-link rounded-0 text-secondary" onClick={ this.setLastPage } disabled={ this.isLastPage(current, last) } aria-disabled={ this.isLastPage(current, last) }>
-              Last ≫
+            <button type="button" className="btn btn-link btn-block rounded-0 text-secondary" onClick={ this.setLastPage } disabled={ this.isLastPage(current, last) } aria-disabled={ this.isLastPage(current, last) }>
+              <span className="d-none d-sm-inline">Last</span> ≫
             </button>
           </div>
         </div>

@@ -7,11 +7,23 @@ import Section from './Section'
  */
 class MachineDetail extends Component {
   render() {
-    let machine = this.props.machine,
+    let {
+          machine,
+          setMachine,
+          deactivateMachines
+        } = this.props,
         sections = machine.getViewSections()
 
     return (
-      <article>
+      <article id="machine-detail" className="p-3">
+        <button
+          onClick={ () => {
+            setMachine(null)
+            deactivateMachines()
+          } }
+          className="btn btn-dark btn-sm float-right d-lg-none" type="button">
+          ×
+        </button>
         <header>
           <h4 className="card-title font-weight-normal mb-4">
             <span title="Machine Name">{ machine.name }</span>&nbsp;
