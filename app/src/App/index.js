@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FadeIn } from 'animate-components';
 
 import Machines from '../common/factories/Machines'
 
@@ -205,45 +206,47 @@ class App extends Component {
         pageMachines = this.getPageMachines(filteredMachines, currentPage, pageLimit)
 
     return (
-      <div className="container d-flex flex-column p-3">
-        <Header
-          setFilter={ this.setFilter }
-          toggleListLayout={ this.toggleListLayout }
-          isExtendedList={ isExtendedList }
-        >
-        </Header>
-        {
-          filteredMachines.length ?
-          (
-            <section className="row">
-              <div className="col-lg-auto col-12">
-                <MachineList
-                  machines={ pageMachines }
-                  pagination={ pagination }
-                  isExtended={ isExtendedList }
-                  toggleMachine={ this.toggleMachine }
-                ></MachineList>
-              </div>
-              <div className={ `col flex-column border-left${ !machine ? ' d-none d-lg-block p-3' : '' }` }>
-                {
-                  machine ?
-                  (
-                    <MachineDetail
-                      machine={ machine }
-                      setMachine={ this.setMachine }
-                      deactivateMachines={ this.deactivateMachines }
-                    ></MachineDetail>
-                  ) :
-                  (<EmptyDetail></EmptyDetail>)
-                }
-              </div>
-            </section>
-          ) :
-          (
-            <EmptyList isFiltered={ isListFiltered }></EmptyList>
-          )
-        }
-      </div>
+      <FadeIn duration='.5s' timingFunction='ease-in'>
+        <div className="container d-flex flex-column p-3">
+          <Header
+            setFilter={ this.setFilter }
+            toggleListLayout={ this.toggleListLayout }
+            isExtendedList={ isExtendedList }
+          >
+          </Header>
+          {
+            filteredMachines.length ?
+            (
+              <section className="row">
+                <div className="col-lg-auto col-12">
+                  <MachineList
+                    machines={ pageMachines }
+                    pagination={ pagination }
+                    isExtended={ isExtendedList }
+                    toggleMachine={ this.toggleMachine }
+                  ></MachineList>
+                </div>
+                <div className={ `col flex-column border-left${ !machine ? ' d-none d-lg-block p-3' : '' }` }>
+                  {
+                    machine ?
+                    (
+                      <MachineDetail
+                        machine={ machine }
+                        setMachine={ this.setMachine }
+                        deactivateMachines={ this.deactivateMachines }
+                      ></MachineDetail>
+                    ) :
+                    (<EmptyDetail></EmptyDetail>)
+                  }
+                </div>
+              </section>
+            ) :
+            (
+              <EmptyList isFiltered={ isListFiltered }></EmptyList>
+            )
+          }
+        </div>
+      </FadeIn>
     )
   }
 }

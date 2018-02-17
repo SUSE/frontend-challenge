@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FadeIn } from 'animate-components';
 
 import Item from './Item'
 import Pagination from '../Pagination'
@@ -25,12 +26,14 @@ class MachineList extends Component {
         <nav className="list-group list-group-flush">
           {
             machines.map((machine) => (
-              <Item
-                key={ machine.id }
-                machine={ machine }
-                isExtended={ isExtended }
-                toggleMachine={ toggleMachine }
-              ></Item>
+              <FadeIn duration='.5s' timingFunction='ease-in'>
+                <Item
+                  key={ machine.id }
+                  machine={ machine }
+                  isExtended={ isExtended }
+                  toggleMachine={ toggleMachine }
+                ></Item>
+              </FadeIn>
             ))
           }
         </nav>
