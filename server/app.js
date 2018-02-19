@@ -2,7 +2,7 @@ const express = require('express'),
       path = require('path'),
       cors = require('cors'),
       app = express(),
-      port = 3001
+      port = process.env.PORT || 8080
 
 let getPath = function(file) {
   return express.static(path.join(__dirname, file))

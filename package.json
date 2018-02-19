@@ -10,9 +10,8 @@
   "license": "ISC",
   "homepage": "https://github.com/vmontala/frontend-challenge#readme",
   "scripts": {
-    "install": "npm --prefix ./app install ./app",
-    "postinstall": "npm --prefix ./server install ./server",
-    "build": "npm run --prefix app build",
+    "install": "npm --prefix app install && npm --prefix server install",
+    "postinstall": "npm run --prefix app build",
     "start": "npm run --prefix server serve"
   }
 }
