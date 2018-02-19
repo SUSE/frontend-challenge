@@ -5,6 +5,6 @@
     "express": "^4.16.2"
   },
   "scripts": {
-    "start": "node app.js"
+    "serve": "node app.js"
   }
 }

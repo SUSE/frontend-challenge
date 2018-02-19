@@ -10,6 +10,7 @@ let getPath = function(file) {
 
 app.use(cors())
 
+app.use('/', getPath('../app/build'))
 app.use('/machines', getPath('json/systems-long-list.json'))
 app.use(/\/machines\/\w+/, getPath('json/system-details.json'))
 
