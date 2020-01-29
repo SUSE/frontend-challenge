@@ -1,9 +1,7 @@
 Frontend Challenge
 ====================
 
-The idea of this challenge is to create a UI for listing computer systems.
-
-Here you can find a [short list of systems](https://github.com/SUSE/frontend-challenge/blob/master/systems-short-list.json) with some details per each. The goal of this challenge is to create an overview page for the list of systems with some relevant values, and a separate view for the [single system details](https://github.com/SUSE/frontend-challenge/blob/master/system-details.json).
+The idea of this challenge is to create a Dashbord to display a GitHub repository report.
 
 You can choose your own path among the following levels:
 + [Entry Level](#entry-level)
@@ -31,27 +29,37 @@ You can choose your own path among the following levels:
 
 **TASKS**
 + *All of the base requirements*
-+ Create and implement (using HTML, CSS and JS) a UI for listing the [short list of systems](https://github.com/SUSE/frontend-challenge/blob/master/systems-short-list.json) systems with a basic design
++ Use [ReactJS](https://reactjs.org/) framework
++ Use a CSS Framework ([Bootstrap](https://getbootstrap.com/) is preferred)
++ Make use of the [GitHub API](https://developer.github.com/) (any version) to connect to the [SaltStack/Salt](https://github.com/saltstack/salt) GitHub repository to fetch the data
++ Create and implement a UI for reporting statistics of the github repository:
+  + open Projects
+  + open/closed Pull Requests
+  + Labels
+  + open/closed Issues
+  + ..
 
 ## Intermediate Level
 
 **TASKS**
 + *All of the base and entry requirements*
-+ Use a JavaScript framework (ReactJS is preferred)
-+ Use a CSS Framework (Bootstrap is preferred)
-+ Use LESS for custom CSS
++ Use [Yarn](https://yarnpkg.com/) to set up the project
 + Cross browser support (or graceful degradation)
 + Responsive design and implementation
 + Make use of CSS animations
++ Details insight of a single object (e.g.: separated detailed view of an Issue)
 
 ## Advanced Level
 
 **TASKS**
 + *All of the base, entry, and intermediate requirements*
-+ Serve `json` files from an http server
-+ Use the [long list of systems](https://github.com/SUSE/frontend-challenge/blob/master/systems-long-list.json) instead
-+ Include some graph-like visualization of the data (d3.js is preferred)
-+ Host the website on the service of your choice (We enjoy cloud hosting like Azure or AWS, but we would also settle for a *.github.io address)
++ Include some graph-like visualization of the data
++ Host the website on the service of your choice (We enjoy cloud hosting like Azure or AWS, or a *.github.io address)
++ More statistics reports:
+  + Branches
+  + Forks
+  + Contributors
+  + ..
 
 ## Bonus
 
